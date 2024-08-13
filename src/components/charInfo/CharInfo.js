@@ -88,7 +88,7 @@ const View = ({char}) => {
                     <div className="char__info-name">{name}</div>
                     <div className="char__btns">
                         <a /* href={homepage} */ className="button button__main">
-                            <div className="inner">homepage</div>
+                            <div className="inner">К персонажу</div>
                         </a>
                         <a /* href={wiki} */ className="button button__secondary">
                             <div className="inner">Wiki</div>
@@ -98,7 +98,7 @@ const View = ({char}) => {
             </div>
             <div className="char__descr">{description}</div>
 
-            <div className="char__comics">Comics:</div>
+            <div className="char__comics">Комиксы:</div>
             <ul className="char__comics-list">
                     {comics.length === 0 ? "Нет комиксов с этим персонажем" : null}
                     {comics.map((item, i) => {

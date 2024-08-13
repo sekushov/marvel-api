@@ -11,7 +11,7 @@ function SingleComic() {
                 <p className="single-comic__descr">Language: en-us</p>
                 <div className="single-comic__price">9.99$</div>
             </div>
-            <a href="./#" className="single-comic__back">Back to all</a>
+            <a href="./#" className="single-comic__back">К списку</a>
         </div>
     )
 }

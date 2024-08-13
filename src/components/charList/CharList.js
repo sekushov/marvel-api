@@ -63,7 +63,7 @@ class CharList extends Component {
     
     onCharInfo = (id) => {
         this.props.setCharInfo(id);
-
+        if (document.querySelector('.char__item_selected')) document.querySelector('.char__item_selected').classList.remove('char__item_selected');
     }
     
     render() {
@@ -78,7 +78,7 @@ class CharList extends Component {
                 onClick={() => this.onRequest(offset)}
                 disabled={newItemLoading}
                 style={{'display': charsEnded ? 'none' : 'block'}}>
-                    <div className="inner">load more</div>
+                    <div className="inner">Показать больше</div>
             </button>
             : null;
 
@@ -105,7 +105,18 @@ class View extends Component {
             return(
                 <li className="char__item" 
                     key={id}
-                    onClick={() => this.props.onCharInfo(id)}>
+                    onClick={(e) => {
+                        this.props.onCharInfo(id);
+                        e.currentTarget.classList.add("char__item_selected");
+                    }}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            this.props.onCharInfo(id);
+                            e.currentTarget.classList.add("char__item_selected");
+                        }
+                    }}
+                    role="button"
+                    tabIndex="0">
                     <img src={thumbnail} alt={name} style={imgStyle}/>
                     <div className="char__name">{name}</div>
                 </li>
