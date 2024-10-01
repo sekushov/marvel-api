@@ -5,16 +5,16 @@ function AppHeader() {
     return (
         <header className="app__header">
             <h1 className="app__title">
-                <Link to="/">
+                <Link to="marvel-api/">
                     <span>Marvel </span>
                     Информационный ресурс
                 </Link>
             </h1>
             <nav className="app__menu">
                 <ul>
-                    <li><Link to="/">Персонажи</Link></li>
+                    <li><Link to="/marvel-api/">Персонажи</Link></li>
                     /
-                    <li><Link to="/comics">Комиксы</Link></li>
+                    <li><Link to="/marvel-api/comics">Комиксы</Link></li>
                 </ul>
             </nav>
         </header>

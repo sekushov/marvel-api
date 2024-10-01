@@ -7,7 +7,7 @@ function Page404 () {
         <div className="page404">
             <img src={error} alt="Страница не найдена" className="error404" />
             <p>Ошибка 404</p>
-            <Link to="/">Вернуться на главную</Link>
+            <Link to="/marvel-api/">Вернуться на главную</Link>
         </div>
     )
 }
