@@ -77,7 +77,7 @@ const View = (props) => {
         return props.characters.map(item => {
             const {id, name, thumbnail} = item;
             let imgStyle = {'objectFit' : 'cover'};
-            if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
+            if (thumbnail === 'https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
                 imgStyle = {'objectFit' : 'contain'};
             }
             return(

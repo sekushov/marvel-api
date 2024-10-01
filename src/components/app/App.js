@@ -10,9 +10,9 @@ const App = () => {
         <AppHeader/>
         <main>
           <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/comics" element={<ComicsPage />} />
-            <Route path="*" element={<Page404 />} />
+            <Route path="https://sekushov.github.io/marvel-api/build/" element={<MainPage />} />
+            <Route path="https://sekushov.github.io/marvel-api/build/comics" element={<ComicsPage />} />
+            <Route path="https://sekushov.github.io/marvel-api/build/*" element={<Page404 />} />
           </Routes>
         </main>
       </div>
