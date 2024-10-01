@@ -12,9 +12,9 @@ function AppHeader() {
             </h1>
             <nav className="app__menu">
                 <ul>
-                    <li><Link to="/marvel-api/">Персонажи</Link></li>
+                    <li><Link to="/marvel-api/build/">Персонажи</Link></li>
                     /
-                    <li><Link to="/marvel-api/comics">Комиксы</Link></li>
+                    <li><Link to="/marvel-api/build/comics">Комиксы</Link></li>
                 </ul>
             </nav>
         </header>
