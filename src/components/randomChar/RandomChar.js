@@ -1,86 +1,68 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../error/Error';
-import MarvelService from '../../services/MarvelService';
+import useMarvelService from '../../services/MarvelService';
 
 import './randomChar.scss';
 import mjolnir from '../../resources/img/mjolnir.png';
 
-class RandomChar extends Component {
-    state = {
-        char: {},
-        loading: true,
-        error: false
+const RandomChar = () => {
+    const {loading, error, clearError, getCharacter} = useMarvelService();
+
+    const [char, setChar] = useState({});
+
+
+    useEffect(() => {
+        updateChar();
+    }, [])
+
+    const onCharLoaded = (char) => {
+        setChar(char);
+        // setLoading(false);
     }
 
-    marvelService = new MarvelService();
+    // const onCharLoading = () => {
+    //     setLoading(true);
+    //     setError(false);
+    // }
 
-    componentDidMount() {
-        this.updateChar();
-        // this.timerId = setInterval(this.updateChar, 15000);
-    }
+    // const onError = () => {
+    //     setLoading(false);
+    //     setError(true);
+    // }
 
-    componentWillUnmount() {
-        // clearInterval(this.timerId);
-    }
-
-    onCharLoaded = (char) => {
-        this.setState({
-            char, 
-            loading: false
-        })
-    }
-
-    onCharLoading = () => {
-        this.setState({
-            loading: true,
-            error: false
-        })
-    }
-
-    onError = () => {
-        this.setState({
-            loading: false,
-            error: true
-        })
-    }
-
-    updateChar = () => {
+    const updateChar = () => {
+        clearError();
         const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
-        this.onCharLoading();
-        this.marvelService
-            .getCharacter(id)
-            .then(this.onCharLoaded)
-            .catch(this.onError);
+        // onCharLoading();
+        getCharacter(id)
+            .then(onCharLoaded)
+            // .catch(onError);
     }
 
-    render() {
+    const errorMessage = error ? <ErrorMessage/> : null;
+    const spinner = loading ? <Spinner/> : null;
+    const content = !(loading || error) ? <View char={char}/> : null;
 
-        const {char, loading, error} = this.state;
-        const errorMessage = error ? <ErrorMessage/> : null;
-        const spinner = loading ? <Spinner/> : null;
-        const content = !(loading || error) ? <View char={char}/> : null;
-
-        return (
-            <div className="randomchar">
-                {errorMessage}
-                {spinner}
-                {content}
-                <div className="randomchar__static">
-                    <p className="randomchar__title">
-                        Случайный персонаж
-                    </p>
-                    <p className="randomchar__title">
-                        Нажмите, чтобы выбрать другого<br/><br/>
-                    </p>
-                    <button onClick={this.updateChar} className="button button__main">
-                        <div className="inner">Выбрать</div>
-                    </button>
-                    <img src={mjolnir} alt="mjolnir" className="randomchar__decoration"/>
-                </div>
+    return (
+        <div className="randomchar">
+            {errorMessage}
+            {spinner}
+            {content}
+            <div className="randomchar__static">
+                <p className="randomchar__title">
+                    Случайный персонаж
+                </p>
+                <p className="randomchar__title">
+                    Нажмите, чтобы выбрать другого<br/><br/>
+                </p>
+                <button onClick={updateChar} className="button button__main">
+                    <div className="inner">Выбрать</div>
+                </button>
+                <img src={mjolnir} alt="mjolnir" className="randomchar__decoration"/>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 const View = ({char}) => {

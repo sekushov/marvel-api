@@ -1,19 +1,20 @@
 import './appHeader.scss';
+import {Link} from 'react-router-dom';
 
 function AppHeader() {
     return (
         <header className="app__header">
             <h1 className="app__title">
-                <a href="./#">
+                <Link to="/">
                     <span>Marvel </span>
                     Информационный ресурс
-                </a>
+                </Link>
             </h1>
             <nav className="app__menu">
                 <ul>
-                    <li><a href="./#">Персонажи</a></li>
+                    <li><Link to="/">Персонажи</Link></li>
                     /
-                    <li><a href="./#">Комиксы</a></li>
+                    <li><Link to="/comics">Комиксы</Link></li>
                 </ul>
             </nav>
         </header>

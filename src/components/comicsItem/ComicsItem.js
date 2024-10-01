@@ -1,13 +1,24 @@
 import './comicsItem.scss';
 
-function ComicsItem({link, src, alt, name, price}) {
+function ComicsItem({item}) {
+    const {thumbnail, title, price} = item;
     return (
-        <li className="comics__item">
-            <a href={link}>
-                <img src={src} alt={alt} className="comics__item-img"/>
-                <div className="comics__item-name">{name}</div>
-                <div className="comics__item-price">{price}</div>
-            </a>
+        <li className="comics__item"
+            onClick={(e) => {
+                if (document.querySelector('.comics__item_selected')) document.querySelector('.comics__item_selected').classList.remove('comics__item_selected');
+                e.currentTarget.classList.add("comics__item_selected");
+            }}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                    if (document.querySelector('.comics__item_selected')) document.querySelector('.comics__item_selected').classList.remove('comics__item_selected');
+                    e.currentTarget.classList.add("comics__item_selected");
+                }
+            }}
+            role="button"
+            tabIndex="0">
+            <img src={thumbnail} alt={title}/>
+            <div className="comics__name">{title}</div>
+            <div className="comics__price">{price}</div>
         </li>
     )
 }
